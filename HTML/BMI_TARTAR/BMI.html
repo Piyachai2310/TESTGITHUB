@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI BY TARTAR</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+  <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+  <div class="container">
+    <h2>เครื่องคำนวณหาค่าดัชนีมวลกาย (BMI)</h2>
+    <p>   การหาค่าดัชนีมวลกาย (Body Mass Index : BMI) คือเป็นมาตรการที่ใช้ประเมินภาวะอ้วนและผอมในผู้ใหญ่ ตั้งแต่อายุ 20 ปีขึ้นไป สามารถทำได้โดยการชั่งน้ำหนักตัวเป็นกิโลกรัม และวัดส่วนสูงเป็นเซนติเมตร แล้วนำมาหาดัชมีมวลกาย โดยใช้โปรแกรมวัดค่าความอ้วนข้างต้น
+    </p>
+    <p><span>Note.</span> ทฤษฎี การประเมินระดับความอ้วนด้วยสูตรคำนวน BMI เป็นการประเมินจากค่าเฉลี่ยเชิงสถิติ ผลการคำนวณที่ได้อาจคลาดเคลื่อนจากความเป็นจริง โดยเฉพาะผู้ที่ออกกำลังกายเป็นประจำ หรือกลุ่มนักเพาะกายที่มีปริมาณกล้ามเนื้อสูง
+    </p>
+    <div class="bmi">
+      <h3>น้ำหนักตัว</h3>
+      <input id="weight" type="number" name="weight" placeholder="ใส่เลขน้ำหนัก">
+      <h3>ส่วนสูง</h3>
+      <input id="height" type="number" name="height" placeholder="ใส่เลขส่วนสูง">
+      <div class="btn">
+        <botton onclick="calculate()"><a href="#">คำนวณ</a></botton>
+        <i class="ri-arrow-down-line"></i>
+      </div>
+      
+      <div class="result">
+        <h1 class=" name_bmi" >BMI</h1>
+        <h1 id = "BMI"> </h1>
+      </div>
+    </div>
+  </div>
+
+  <script src="BMI_js.js"></script>
+</body>
+</html>

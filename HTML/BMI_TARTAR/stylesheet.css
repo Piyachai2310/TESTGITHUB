@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+  }
+  body{
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  }
+  
+  .container{
+    background-color: #fff;
+    width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+    box-shadow: 2px 2px 3px;
+  }
+  
+  .container h2{
+    text-align: center;
+  }
+  
+  .container p span{
+    font-weight: bold;
+  }
+  
+  .bmi{
+    background-color: #D9D9D9;
+    box-shadow: 2px 2px 3px;
+    padding: 1px 0px 20px 10rem;
+    max-width: 600px;
+    margin: auto;
+    
+  }
+  
+  .bmi input{
+    background: transparent;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    width: 50%;
+    height: 1.5rem;
+  }
+  
+  .bmi input:focus{
+    outline: none;
+    
+  }
+  
+  .btn{
+    background-color: #676760;
+    width: 200px;
+    margin: 3rem 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn a{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .btn i{
+    color: #fff;
+    font-size: 20px;
+  }
+  
+  .result {
+    border: 2px solid;
+    border-radius: 5px;
+    width: 400px;
+    height: 200px;
+    background-color: #fff;
+    margin-left: -15%;
+  }
+  
+  .result {
+     text-align: center;
+  }
+  
+  .result #BMI{
+    margin: 2rem;
+  
+  }
