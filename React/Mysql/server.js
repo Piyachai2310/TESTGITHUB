@@ -21,31 +21,38 @@ const app = express();
 const port = 3000;
 
 var mysql = require('mysql');
+
+
+//-------------------------------------------------------------------------------------
+
 var pool = mysql.createPool({
     connectionLimit: 10,
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'mygame' // ชื่อ Node
+    database: 'mygame'
 });
 
-app.get('/' , (req,res) => {
+
+//-------------------------------------------------------------------------------------
+
+app.get('/', (req, res) => {
     res.send('Hello World by Express!')
-}); 
+});
 
-app.get('/users' , (req,res) => {
+
+app.get('/gaming', (req, res) => {
     // res.send('Getting all user to you')
-    pool.query("SELECT * FROM gaming" , function (error, results , fields) {
+    pool.query("SELECT * FROM gaming", function (error, results, fields) {
         if (error) throw error;
-    
+
         res.json(results);
     });
-}); 
+});
 
-app.get('/users/GameId/:GameId', (req, res) => {
-    const GameId = req.params.GameId;
-
-    pool.query("SELECT * FROM gaming WHERE GameId = ?", [GameId], function (error, results, fields) {
+app.get('/Battle', (req, res) => {
+    // res.send('Getting all user to you')
+    pool.query("SELECT * FROM battle", function (error, results, fields) {
         if (error) throw error;
 
         res.json(results);
@@ -53,6 +60,26 @@ app.get('/users/GameId/:GameId', (req, res) => {
 });
 
 
-app.listen(port , () => {
+app.get('/typegame', (req, res) => {
+    // res.send('Getting all user to you')
+    pool.query("SELECT * FROM typegame", function (error, results, fields) {
+        if (error) throw error;
+
+        res.json(results);
+    });
+});
+
+app.get('/gaming/:GameType', (req, res) => {
+    const Gametype = req.params.GameType;
+
+    pool.query("SELECT * FROM gaming WHERE GameType = ?", [Gametype], function (error, results, fields) {
+        if (error) throw error;
+
+        res.json(results);
+    });
+});
+
+
+app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 });
