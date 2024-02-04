@@ -1,0 +1,30 @@
+.bodyBmiCalPage {
+    margin-top: 0;
+    padding-top: 0;
+    background: linear-gradient(to top, rgb(109, 0, 142), rgb(219, 136, 250), white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divBmi {
+    max-width: 500px;
+    text-align: center;
+    background-color: rgb(80, 19, 87);
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: aliceblue;
+    border: 2px solid #000000;
+    display: inline-block; 
+    text-shadow: 0 0 20px black;
+
+}
+
+#top {
+    font-size: 30px;
+    color: aliceblue;
+    text-shadow: 0 0 20px black;
+
+}

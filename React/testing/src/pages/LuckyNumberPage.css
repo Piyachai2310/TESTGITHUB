@@ -1,0 +1,50 @@
+.luckybody {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to top, rgb(6, 58, 178), rgb(88, 105, 255), rgb(137, 231, 255));
+    padding: 20px;
+}
+
+.center {
+    text-align: center;
+}
+input {
+    padding: 8px;
+    margin: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #ff0000;
+    text-shadow: 0px 0px 10px #000000,
+                 0px 0px 20px #000000
+}
+
+.containresult {
+    max-width: 500px;
+    text-align: center;
+    background-color: rgb(9, 199, 233);
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    color: aliceblue;
+    border: 2px solid #000000;
+    display: inline-block; 
+    text-shadow: 0 0 20px black;
+}
+    

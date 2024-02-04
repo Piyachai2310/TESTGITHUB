@@ -1,0 +1,79 @@
+.bodyMyHobby {
+    margin-top: 10px;
+    background: linear-gradient(to right, #bfe0f3, #800717);
+}
+.bodyMyHobby2 {
+    padding: 10px;
+    background: linear-gradient(to right, #01d19d, #18392c);
+}
+#juju {
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+#anime {
+    padding-top: 20px;
+}
+
+#harry {    
+    text-align: justify;
+    margin: 10px 0;
+    flex: 1;
+    text-indent: 20px;
+}
+
+.container {
+    max-width: 380px;
+    background-color: #333;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    display: inline-block;
+    box-shadow: 0px 0px 2px black,
+        0px 0px 4px black,
+        0px 0px 6px black,
+        0px 0px 8px black;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.container:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 2px rgb(131, 130, 130),
+        0px 0px 4px rgb(131, 130, 130),
+        0px 0px 6px rgb(131, 130, 130),
+        0px 0px 8px rgb(131, 130, 130);
+    background: linear-gradient(to right, #bfe0f3, #800717);
+    color: #ffffff;
+}
+.container2 {
+    max-width: 1000px;
+    background-color: #333;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    display: inline-block;
+    box-shadow: 0px 0px 2px black,
+        0px 0px 4px black,
+        0px 0px 6px black,
+        0px 0px 8px black;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    flex: 1;
+    margin-right: 20px;
+}
+
+.container2:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 2px rgb(131, 130, 130),
+        0px 0px 4px rgb(131, 130, 130),
+        0px 0px 6px rgb(131, 130, 130),
+        0px 0px 8px rgb(131, 130, 130);
+        background: linear-gradient(to right, #01d19d, #18392c);
+    color: #ffffff;
+}
