@@ -1,0 +1,69 @@
+/* app.css */
+/* .app-header {
+  border-bottom: 1px solid gray;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header-logo {
+  height: 44px;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+
+.tattoo-item img {
+  display: block;
+  width: 100%;
+} */
+
+/* Additional styles for images, headings, etc. as needed */
+
+
+/* ------------------------------------------------------------------------------------------------*/
+
+/* app.css */
+.app-header {
+  border-bottom: 1px solid gray;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-header-logo {
+  height: 44px;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+  row-gap: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tattoo-item {
+  width: 300px;
+  margin: 10px;
+}
+
+.tattoo-item img {
+  width: auto;
+  height: 200px;
+}
+
+.tattoo-item .title {
+  font-size: 18px;
+}
