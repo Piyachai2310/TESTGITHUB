@@ -1,0 +1,21 @@
+
+
+.tattoo-item {
+  width: 300px;
+  margin: 10px;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 2rem;
+}
+
+.tattoo-item img {
+  width: auto;
+  height: 200px;
+}
+
+.tattoo-item .title {
+  font-size: 18px;
+}
