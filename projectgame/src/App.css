@@ -2,15 +2,4 @@
   margin-bottom: 1rem;
 }
 
-.box-grid {
-  border-bottom: 1px solid gray;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 2px;
-  row-gap: 16px;
-  max-width: 1300px;
-  margin: 20px 0px 0px 230px; 
-  /* grid-template-columns: repeat(3, 60px); */
-  border: 2px solid;
-}
 

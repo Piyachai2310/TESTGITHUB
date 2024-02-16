@@ -16,8 +16,8 @@ import Login from './Login';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-        <Route path="/" element = {<Login />} />
-        <Route path="/App" element = {<App />} />
+        <Route path="/" element = {<App />} />
+        <Route path="/Login" element = {<Login />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

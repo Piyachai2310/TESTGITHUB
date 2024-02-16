@@ -11,7 +11,7 @@ function AppHeader() {
   let navigate = useNavigate();
 
   const doLogin = async () => {
-    navigate("..", { replace: false });
+    navigate("Login", { replace: false });
   }
 
   return (
