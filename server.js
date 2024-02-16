@@ -1,212 +1,165 @@
-// const http = require('http');
-
-// const hostname = '127.0.0.1';
-
-// const port = 3000;
-
-// const server = http.createServer((req,res) =>{
-//     res.statusCode = 200;
-//     res.setHeader("Content-Type","text/plain");
-//     res.end("Hello world uncle");
-// });
-
-// server.listen(port,hostname,() =>{
-//     console.log(`server running at http://${hostname}:${port}/`);
-// });
-
-// ctrl + C  เพื่อยกเลิก server
-
-//----------------------------------------------------------------------------------------------------------------------------------
-
-// const express = require('express');
-// const app = express();
-// const port = 3000;
-
-// var mysql = require('mysql');
-// var pool = mysql.createPool({
-//     connectionLimit: 10,
-//     host: 'localhost',
-//     user: 'root',
-//     password: '',
-//     database: 'my-product'
-// });
-
-// app.get('/' , (req,res) => {
-//     res.send('Hello World by Express!')
-// }); 
-
-// app.get('/users' , (req,res) => {
-//     // res.send('Getting all user to you')
-//     pool.query("SELECT * FROM user" , function (error, results , fields) {
-//         if (error) throw error;
-
-//         res.json(results);
-//     });
-// }); 
-
-// app.get('/users/:userId' , (req,res) => {
-//     const userId = req.params.userId;
-
-//     pool.query("SELECT * FROM user WHERE user_id = ?", [userId], function (error, results , fields) {
-//         if (error) throw error;
-
-//         res.json(results);
-//     });
-// }); 
-
-
-// app.listen(port , () => {
-//     console.log(`Example app listening on port ${port}`)
-// });
-
-//----------------------------------------------------------------------------------------------------------------------------------
 const express = require('express');
 const app = express();
 const port = 8080;
+const bodyParser = require('body-parser');
+
+const jwt = require("jsonwebtoken");
+
 const cors = require("cors");
 app.use(cors());
 
-
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 var mysql = require('mysql');
 var pool = mysql.createPool({
-    connectionLimit: 10,
+    connectionLimit :10,
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: "",
     database: 'my-product'
 });
 
-app.get('/users', (req, res) => {
-    // res.send('Getting all user to you')
-    pool.query("SELECT * FROM users", function (error, results, fields) {
-        if (error) throw error;
+app.post('/add_user', (req, res) => {
+    const { id, name, old, weight, email } = req.body;
 
-        res.json(results);
-    });
+    pool.query("INSERT INTO users (id, name, old, weight, email) VALUES (?, ?, ?, ?, ?)",
+        [id, name, old, weight, email],
+        function(error, results, fields) {
+            if (error) {
+               if (error) throw error;
+            }
+
+            res.json(results);
+        }
+    );
 });
 
-app.get('/roles', (req, res) => {
-    // res.send('Getting all user to you')
-    pool.query("SELECT * FROM roles", function (error, results, fields) {
-        if (error) throw error;
 
-        res.json(results);
-    });
+    
+
+
+
+app.get ('/',(req, res) =>{
+    res.send('Hello');
 });
 
-const bodyParser = require('body-parser');
+app.get ('/users',(req, res) =>{
+   //res.send("Getting all users to you");
+   pool.query("select * from users",function(error, results,fields){
+    if (error) throw error;
 
+    res.json(results);
+   });
+});
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.listen(port, () =>{
+    console.log(`Example app listening on port ${port}`);
+});
 
-app.use(bodyParser.json());
-
-
-// app.post('/add_user', (req, res) => {
-//     const input = req.body;
-
-//     pool.query(
-//         "INSERT INTO users (user_id, user_name, user_pwd, first_name ,last_name, email) VALUES (?, ?, ?, ?, ? ,?)",
-//         [
-//             input.user_id,
-//             input.user_name,
-//             input.user_pwd,
-//             input.first_name,
-//             input.last_name,
-//             input.email
-//         ], function (error, results, fields) {
-//             if (error) throw error;
-
-//             res.json(results);
-//         });
-
-// });
-
-const jwt = require('jsonwebtoken'); // ต้อง import library jwt
+app.post("/login", (req, res) =>{
+    const username =req.body.username;
+    const password =req.body.password;
+    pool.query("SELECT * FROM users WHERE user_name = ? AND user_pwd = MD5(?)",[username,password],function (error,results,fields) {
+        if(error){
+            res.json({
+                result: false,
+                message : error.message
+            });
+        }
+    
+        
+        if(results.length){
+            res.json({
+                result : true
+            });
+        }
+        else{
+            res.json({
+                result: false,
+                message : "ไม่พบ username or password ไม่ถูกต้อง"
+            });
+        }
+    })
+});
 
 app.post("/api/authen_request", (req, res) => {
-    const sql = "SELECT * FROM users WHERE user_name = ?";
-    pool.query(sql, [req.body.username], (error, results) =>{
+    const sql = "SELECT * FROM users WHERE MD5(user_name) = ?";
+    pool.query(sql, [req.body.username], (error, results) => {
         var response;
-        if(error) {
-            console.log(response);
+        if (error) {
             response = {
                 result: false,
                 message: error.message
             };
-        }
-        else{
-            if (results.length){
+        } else {
+            if (results.length) {
+                console.log("start")
                 var payload = { username: req.body.username };
                 var secretKey = "MySecretKey";
+                console.log("start2")
                 const authToken = jwt.sign(payload, secretKey);
-                console.log("start test");
-                console.log("start test");
-                // res.json(authToken);
+                console.log("start3")
                 response = {
-                    result:true,
+                    result: true,
                     data: {
                         auth_token: authToken
                     }
                 };
-            }
-            else{
+            } else {
                 response = {
                     result: false,
                     message: "Username ไม่ถูกต้อง"
                 };
             }
         }
+        console.log(results);
         res.json(response);
+        
     });
 });
+
+
+
 
 app.post("/api/access_request", (req, res) => {
     const authenSignature = req.body.auth_signature;
     const authToken = req.body.auth_token;
-    // console.log("1");
-    // console.log(authToken);
-    try {
-        var decoded = jwt.verify(authToken, "MySecretKey");
-        // console.log(decoded);
-        if (decoded) {
-            const query = "SELECT a.user_id, a.user_name, a.user_pwd, a.first_name, a.last_name, a.email, a.role_id, b.role_name "
-                + "FROM users a JOIN roles b ON a.role_id = b.role_id WHERE MD5(CONCAT(user_name, '&', user_pwd)) = ?";
+
+    var decoded = jwt.verify(authToken, "MySecretKey");
+
+    if (decoded) {
+        const query = "SELECT a.user_id, a.user_name, a.first_name, a.last_name, a.email, a.role_id, b.role_name " +
+        "FROM users a JOIN roles b ON a.role_id = b.role_id WHERE MD5(CONCAT(user_name, '&', user_pwd)) = ?";
             pool.query(query, [authenSignature], (error, results) => {
-                var response;
+                var response ;
                 if (error) {
                     response = {
                         result: false,
                         message: error.message
                     };
-                    res.json(response);
                 } else {
                     if (results.length) {
                         var payload = {
-                            user_id: results[0].user_id,
-                            username: results[0].user_name,
+                            user_id: results[0].user_id, 
+                            user_name: results[0].user_name, 
                             first_name: results[0].first_name,
-                            last_name: results[0].last_name,
+                            last_name : results[0].last_name, 
                             email: results[0].email,
-                            role_id: results[0].role_id,
+                            role_id: results[0].role_id, 
                             role_name: results[0].role_name
                         };
                         const accessToken = jwt.sign(payload, "MySecretKey");
-                        response = { result: true, data: { access_token: accessToken, account_info: payload } };
-                        res.json(response);
+                        response = { result: true, data: { access_token: accessToken, account_info: payload}};
                     } else {
-                        response = { result: false, message: "Username หรือ Password ไม่ถูกต้อง" };
-                        res.json(response);
+                        response = { result: false, message: "Username หรือ Password ไม่ถูกต้อง"};
                     }
                 }
-            });
-        }
-    } catch (verifyError) {
-        res.json({ result: false, message: "ไม่สามารถตรวจสอบ Token ได้" });
-    }
-});
+                res.json(response);
 
-app.listen(port , () => {
-    console.log(`Example app listening on port ${port}`)
+                console.log(authenSignature);
+                console.log(results);
+                console.log(response);
+            });
+    }
 });
