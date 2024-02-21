@@ -1,5 +1,5 @@
 .app-header{
-    background-color: aqua;
+    background-color: rgb(17, 18, 18);
     display: flex;
     justify-content:space-between;
     padding-left: 1rem;
@@ -19,6 +19,7 @@
     gap: 2rem;
     align-items: center;
     cursor: pointer;
+    color: #ffffff;
 
 }
 

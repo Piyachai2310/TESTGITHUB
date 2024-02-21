@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
   BrowserRouter,
@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Home from './Home';
 import Login from './Login';
+import ProductDetail from './ProductDetail';
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 ReactDOM.render(
@@ -20,6 +21,8 @@ ReactDOM.render(
     <Routes>
         <Route path="/" element = {<Login />} />
         <Route path="/home" element = {<Home />} />
+        <Route path="/product/:productId" element = {<ProductDetail />} />
+
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

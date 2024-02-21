@@ -2,4 +2,17 @@
   margin-bottom: 1rem;
 }
 
+.App{
+  background-color: #2C2B2E;
+  height: 100%;
+}
 
+.Game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 
+.Sild{
+  margin-left: 100px;
+} */

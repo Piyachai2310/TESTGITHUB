@@ -163,3 +163,112 @@ app.post("/api/access_request", (req, res) => {
             });
     }
 });
+
+// ===================================================================================
+
+app.use('/images',express.static('images'));    
+
+let checkAuth = (req, res, next) => {
+    let token = null;
+
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        token = req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+        token = req.query.token;
+    } else {
+        token = req.body.token;
+    }
+    console.log('\n');
+    console.log('token:' , token);
+    console.log('\n');
+    console.log('authorization:' , req.headers.authorization);
+    console.log('\n');
+
+    if (token) {
+        jwt.verify(token, "MySecretKey", (err, decoded) => {
+            console.log('\n');
+            console.log('err:' , err);
+            console.log('decoded:' , decoded);
+            if (err) {
+                console.log('An error occurred !!!');
+                res.send(JSON.stringify({
+                    result: false,
+                    message: "ไม่ได้เข้าสู่ระบบ"
+                }));
+            } else {
+                req.decoded = decoded;
+                console.log('decoded:' , req.headers.decoded);
+                console.log('\n');
+                next();
+            }
+        });
+    } else {
+        res.status(401).send("Not authorized");
+    }    
+}
+
+
+
+app.get("/api/product_types", checkAuth, (req, res) => {
+    const query = "SELECT * FROM product_types";
+    console.log("1");
+    pool.query(query, (error, result) => {
+        if(error) {
+            console.log("2: Error");
+            res.json({
+                result: false,
+                message: error.message
+            })
+        } else {
+            console.log("2: Not Error");
+            res.json({
+                result: true,
+                data: result
+            });
+        }
+    });
+});
+
+
+
+app.get("/api/products/type/:productTypeId", (req, res) => {
+    const productTypeId = req.params.productTypeId;
+    console.log("productTypeId:" , productTypeId);
+    let sql = "SELECT a.*, b.product_type_name " + 
+              "FROM products a " + 
+              "JOIN product_types b ON a.product_type_id = b.product_type_id "; // แก้ไขตรงนี้
+    
+    if (productTypeId == 0) {
+        pool.query(sql, (error, results) => {
+            console.log("results" , results);
+            if (error) {
+                console.log("3: Error");
+                res.json({
+                    result: false,
+                    message: error.message
+                });
+            } else {
+                console.log("3: Not Error");
+                res.json({
+                    result: true,
+                    data: results
+                });
+            }
+        });
+    } else {
+        pool.query(sql + "WHERE a.product_type_id = ?",
+        [productTypeId], (error, results) => {
+            if (error) {
+                res.json({
+                    result: false,
+                    message: error.message
+                });
+            } else {
+                res.json({
+                    result: true,
+                    data: results
+                });
+            }
+        });
+    }         
+});

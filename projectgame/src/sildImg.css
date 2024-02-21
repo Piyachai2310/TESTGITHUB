@@ -1,0 +1,111 @@
+.Sild{
+    width: 800px;
+    height: 300px; 
+    background-color: aqua; 
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+/*
+.slick-slider{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+
+.slick-prev{
+    position: absolute;
+    left: 0;
+    top:50%;
+}
+
+.slick-next{
+    position: absolute;
+    right: 0;
+    top:50%;
+}
+*/
+/* .slick-track{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 700px;
+
+} 
+
+.slick-slide{
+
+    width: 300px;
+
+} 
+  
+
+.SlickSlider {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+}
+
+.SlickPrev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.SlickNext {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.SlickTrack {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 700px;
+    transition: transform 0.5s ease; 
+}
+
+.SlickSlide {
+    flex: 0 0 auto;
+    width: 300px;
+} */
+
+
+.SlickSlider {
+    width: 800px;
+    height: 300px;
+    background-color: aqua;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.SlickSlider .SlickTrack {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 700px;
+    transition: transform 0.5s ease; /* เพิ่ม transition สำหรับการเลื่อน slide */
+}
+
+.SlickSlide {
+    flex: 0 0 auto;
+    width: 300px;
+}
+
+.SlickPrev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.SlickNext {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
