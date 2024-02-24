@@ -1,9 +1,18 @@
-.App .Header{
+/* .App .Header{
   margin-bottom: 1rem;
-}
+} */
 
+.App .Image{
+  width: 100%;
+  height: 500px;
+  background-color: aqua;
+  background-image: url('../public/League_of_league.jpg');
+  background: position 10%;
+  background-size: 100%;
+
+}
 .App{
-  background-color: #2C2B2E;
+  background-color: #ffffff;
   height: 100%;
 }
 
@@ -12,7 +21,12 @@
   justify-content: center;
   align-items: center;
 }
-/* 
+ 
 .Sild{
-  margin-left: 100px;
-} */
+ height: 500px;
+ width: 1200px;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 0 auto;
+} 

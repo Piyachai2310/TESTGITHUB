@@ -17,7 +17,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: "",
-    database: 'my-product'
+    database: 'testdb'
 });
 
 app.post('/add_user', (req, res) => {
@@ -130,7 +130,7 @@ app.post("/api/access_request", (req, res) => {
 
     if (decoded) {
         const query = "SELECT a.user_id, a.user_name, a.first_name, a.last_name, a.email, a.role_id, b.role_name " +
-        "FROM users a JOIN roles b ON a.role_id = b.role_id WHERE MD5(CONCAT(user_name, '&', MD5(user_pwd))) = ?";
+        "FROM users a JOIN roles b ON a.role_id = b.role_id WHERE MD5(CONCAT(user_name, '&', user_pwd)) = ?";
             pool.query(query, [authenSignature], (error, results) => {
                 var response ;
                 if (error) {
