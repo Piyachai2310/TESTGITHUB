@@ -6,16 +6,19 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Gametotal from './content/contentimg';
 import RecommendGame from './RecommendGame/RecommendGame';
 import GameMoney from './GameMoney/GameMoney';
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 
 function App() {
-  const[game , setmygame] = useState();
+  const [gametype, setGameType] = useState(0);
+  const [gameId, setGameId] = useState(0);
+  const [game, setmygame] = useState();
   console.log("In function App.");
   useEffect(() => {
-    async function fetchData(){
+    console.log("222");
+    async function fetchData() {
       const response = await fetch(
-        "http://localhost:8080/api/game",
+        "http://localhost:8080/api/typegame",
         {
           method: "GET",
           headers: {
@@ -25,68 +28,82 @@ function App() {
         }
       );
       const json = await response.json();
-      console.log("json: ",json);
-      // setmygame(json.data);
-      setmygame(json.data, () => {
-        console.log("game: ", game);
-      });
+      console.log("json: ", json);
+      setGameType(json.data);
     }
     fetchData();
-  },[]);
+  }, []);
 
-  // useEffect(() => {
-  //   console.log("game: ", game);
-  // }, [game]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch(
+        "http://localhost:8080/api/game/type/" + gameId,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            'Content-Type': 'application/json',
+            Authorization: "Bearer " + localStorage.getItem("access_token")
+          }
+        }
+      );
+
+      const json = await response.json();
+      console.log("setmygame: ",json.data)
+      setmygame(json.data);
+    }
+
+    fetchData();
+  }, [gameId]);
+
 
   return (
-      <div className="App">
-        
-        <div className="Header">
-          <AppHeader />
-        </div>
+    <div className="App">
 
-        <div className='Image'>
-          
-        </div>
-        
-        <div className="Sild">
-          <RecommendGame />
-        </div>
-        
-        <div className="Sild">
-          <GameMoney />
-        </div>
-
-        <div className="bar">
-          <Bar  />
-         { console.log("1")}
-        </div>
-        
-        <div className='Game'>
-        { console.log("2")}
-          {/* <Gametotal /> */}
-          <div className="container mt-3">
-          { console.log("3")}
-          {/* { console.log("game: " , game)} */}
-
-          {game.map(item => {
-            console.log("4");
-            // console.log("game: " , item);
-            <div className="row border rounded shadow-sm mt-3">
-            <div className="col-3">
-                <img src={`http://localhost:8080/game_image/${item.data.image_url}`} width={100} />
-                {/* {console.log(img)} */}
-            </div>
-            <div className="col-7">
-                <h5 className="text-primary">{item.data.Game_Name}</h5>
-                {/* <Link to={`/game/${item.data.GameID}`} className="btn btn-outline-primary me-3">แก้ไข</Link> */}
-                {/* <button type="button" className="btn btn-outline-danger">ลบ</button> */}
-            </div>
-        </div>
-          })}
-        </div>
-        </div>
+      <div className="Header">
+        <AppHeader />
       </div>
+
+      <div className='Image'>
+      
+      </div>
+
+      <div className="RecommendGame_slid">
+        <RecommendGame />
+      </div>
+
+      <div className="GameMoney_Sild">
+        <GameMoney />
+      </div>
+
+      <div className="container">
+        {/* <Bar /> */}
+        <select value={gameId} onChange={(e) => setGameId(e.target.value)}>
+          <option value={0}>ทุกประเภทสินค้า</option>
+          
+          {gametype && gametype.map(item => {
+            return (
+              <option key={item.GameType} value={item.GameType}>
+                {item.GameTypeName}
+              </option>
+            );
+          })}
+        </select>
+        <Link to={"/product/add"} className="ms-3 btn btn-outline-primary me-3">เพิ่ม</Link> 
+        {/* การทำงานคือ Link จะไปเชื่อมกับ index.js แล้ว ตัว index จะพาเราไปอีกไฟล์เอง */}
+      </div>
+      
+
+      <div className='container'>
+        {console.log("game: ", game)}
+        {game && game.map(item => {
+          return (
+            <Gametotal key={item.GameID} className='' data={item} />
+          );
+        })}
+      </div>
+
+    </div>
   );
 }
 

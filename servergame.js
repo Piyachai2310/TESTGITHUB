@@ -35,7 +35,7 @@ app.listen(port, () =>{
 });
 
 
-app.use('/game_image',express.static('images'));    
+app.use('/game_image',express.static('game_image'));    
 
 
 
@@ -60,45 +60,64 @@ app.get("/api/game", (req, res) => {
 });
 
 
+app.get("/api/typegame", (req, res) => {
+    const query = "SELECT * FROM typegame";
+    // console.log("1");
+    pool.query(query, (error, result) => {
+        if(error) {
+            console.log("2: Error");
+            res.json({
+                result: false,
+                message: error.message
+            })
+        } else {
+            console.log("2: Not Error");
+            res.json({
+                result: true,
+                data: result
+            });
+        }
+    });
+});
 
-// app.get("/api/products/type/:productTypeId", (req, res) => {
-//     const productTypeId = req.params.productTypeId;
-//     console.log("productTypeId:" , productTypeId);
-//     let sql = "SELECT a.*, b.product_type_name " + 
-//               "FROM products a " + 
-//               "JOIN product_types b ON a.product_type_id = b.product_type_id "; // แก้ไขตรงนี้
+app.get("/api/game/type/:GameTypeId", (req, res) => {
+    const GameTypeId = req.params.GameTypeId;
+    console.log("GameTypeId:" , GameTypeId);
+    let sql = "SELECT a.*, b.GameTypeName " + 
+              "FROM game a " + 
+              "JOIN typegame b ON a.GameType = b.GameType "; // แก้ไขตรงนี้
     
-//     if (productTypeId == 0) {
-//         pool.query(sql, (error, results) => {
-//             console.log("results" , results);
-//             if (error) {
-//                 console.log("3: Error");
-//                 res.json({
-//                     result: false,
-//                     message: error.message
-//                 });
-//             } else {
-//                 console.log("3: Not Error");
-//                 res.json({
-//                     result: true,
-//                     data: results
-//                 });
-//             }
-//         });
-//     } else {
-//         pool.query(sql + "WHERE a.product_type_id = ?",
-//         [productTypeId], (error, results) => {
-//             if (error) {
-//                 res.json({
-//                     result: false,
-//                     message: error.message
-//                 });
-//             } else {
-//                 res.json({
-//                     result: true,
-//                     data: results
-//                 });
-//             }
-//         });
-//     }         
-// });
+    if (GameTypeId == 0) {
+        pool.query(sql, (error, results) => {
+            console.log("results" , results);
+            if (error) {
+                console.log("3: Error");
+                res.json({
+                    result: false,
+                    message: error.message
+                });
+            } else {
+                console.log("3: Not Error");
+                res.json({
+                    result: true,
+                    data: results
+                });
+            }
+        });
+    } else {
+        pool.query(sql + "WHERE a.GameType = ?",
+        [GameTypeId], (error, results) => {
+            if (error) {
+                res.json({
+                    result: false,
+                    message: error.message
+                });
+            } else {
+                res.json({
+                    result: true,
+                    data: results
+                });
+            }
+        });
+    }         
+});

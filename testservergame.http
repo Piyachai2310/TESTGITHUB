@@ -1,3 +1,5 @@
 # GET http://localhost:8080/users HTTP/1.1
 
-GET http://localhost:8080/api/game HTTP/1.1
+# GET http://localhost:8080/api/game HTTP/1.1
+
+GET http://localhost:8080/api/game/type/0 HTTP/1.1
