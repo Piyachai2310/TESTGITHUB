@@ -1,8 +1,7 @@
 .app-header{
-    background-color: rgb(17, 18, 18);
+    background-color: rgb(5,4,35);
     display: flex;
     justify-content:space-between;
-    padding-left: 1rem;
     padding-right: 2rem;
     align-items: center;
 }

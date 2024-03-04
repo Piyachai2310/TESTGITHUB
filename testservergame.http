@@ -2,4 +2,22 @@
 
 # GET http://localhost:8080/api/game HTTP/1.1
 
-GET http://localhost:8080/api/game/type/0 HTTP/1.1
+# GET http://localhost:8080/api/game/type/0 HTTP/1.1
+
+
+# POST http://localhost:8080/api/specifig HTTP/1.1
+# Content-type: application/json 
+
+# {
+#     "GameName": "HELLDIVERS2"
+# }
+
+
+POST http://localhost:8080/api/product/add HTTP/1.1
+Content-type: application/json 
+
+{
+    "product_type_id": "1" ,
+    "product_name" : "iron" ,
+    "detail" : "I don't know"
+}

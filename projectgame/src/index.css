@@ -12,3 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+body {
+  background-image: url('https://gmedia.playstation.com/is/image/SIEPDC/playstation-wallpapers_ghost-of-tsushima-keyart-4K-01-ps4-26jun20-en-us?$1600px$');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 10%;
+}

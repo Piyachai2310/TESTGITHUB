@@ -1,0 +1,51 @@
+.Display_game{
+    /* background-color: aqua; */
+    width: 100%;
+    height: 300px;
+    display: flex;
+}
+
+.section .Display_game .Imagegame{
+    /* background-color: blueviolet; */
+    width: 500px;
+    
+}
+
+.section .detailgame{
+    color: #ffffff;
+    margin-top: 2rem;
+}
+
+.section .Display_game .Namegame{
+    color: #ffffff;
+    padding-left: 2rem;
+    /* padding-top: 140px; */
+    font-size: 50px;
+    
+}
+
+.Display_game .Imagegame img{
+    width: 100%;
+}
+
+.game_detail{
+    background-color: #282c34;
+    height: 900px;
+    width: 100%;
+}
+
+.game_detail .section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: brown; */
+    width: 1320px;
+    margin: 0 auto;
+    margin-top: 30px;
+    
+}
+
+body{
+    background-color: #282c34;
+}

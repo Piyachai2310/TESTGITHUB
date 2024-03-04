@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { API_GET, API_POST } from './api';
 
 // ใช้สำหรับการ debug URL ว่าอยู่ใน path ไหนในปัจจุบัน
 import { useLocation } from 'react-router-dom';
@@ -11,35 +12,67 @@ export default function ProductDetail() {
 
     const location = useLocation();
 
-    const [productName, setProductName] = useState("");
-    const [productTypes, setProductTypes] = useState([]);
-    const [productTypeId, setProductTypeId] = useState(0);
+    const [productName, setProductName] = useState(""); //ชื่อเกม
+    const [GameType, setGameType] = useState([]); //แสดงประเภทเกม [ใช้เพื่อ map]
+    const [gameID, setgameID] = useState(0);
+    const [productTypeId, setProductTypeId] = useState(0); //แสดงประเภทเกม [ใช้เพื่อส่งต่อปรเภทเกมที่รับ]
     // const [price, setPrice] = useState(0);
-    const [detail, setDetail] = useState(0);
+    const [detail, setDetail] = useState(0); //รายละเอียดเกม
     const [validated, setValidated] = useState(false);
 
-    {console.log("[Enter ProductDetail]")}
+    { console.log("[Enter ProductDetail]") }
 
     useEffect(() => {
+        console.log("222");
         async function fetchData() {
             const response = await fetch(
-                "http://localhost:8080/api/product_types",
+                "http://localhost:8080/api/typegame",
                 {
                     method: "GET",
                     headers: {
-                        Accept: 'application/json',
+                        Accept: "application/json",
                         'Content-Type': 'application/json',
                         Authorization: "Bearer " + localStorage.getItem("access_token")
                     }
                 }
             );
-
             const json = await response.json();
-            console.log("json: " , json);
-            setProductTypes(json.data);
+            // console.log("json: ", json);
+            setGameType(json.data);
         }
         fetchData();
     }, []);
+    
+    useEffect(() => {
+        async function fetchData(productId) {
+            let json = await API_GET("gamedetail/" + productId);
+            var data = json.data[0];
+            console.log("test dataGet: " , data);
+            setgameID(data.GameID)
+            setProductName(data.Game_Name)
+            setProductTypeId(data.GameType)
+            setDetail(data.DetailGame)
+        }
+        
+        if (params.productId != "add") {
+            // console.log("2222222222222222222");
+            fetchData([params.productId]);
+        }
+    }, [params.productId]);
+
+
+    const doUpdateProduct = async () => {
+        const json = await API_POST("product/update", {
+            GameID: gameID,
+            productName: productName, 
+            product_type_id: productTypeId,
+            detail: detail
+        });
+        if (json.result) {
+            window.location = "/product";
+        }
+    }
+
 
 
     const onSave = (event) => {
@@ -55,7 +88,6 @@ export default function ProductDetail() {
         }
         else {
             console.log("1 Not Error[ProductDetail]");
-            console.log("pasreams: " , params);
             if (params.productId == "add") {
                 console.log("2 pass[ProductDetail]");
                 doCreateProduct();
@@ -75,7 +107,6 @@ export default function ProductDetail() {
         const response = await fetch(
             "http://localhost:8080/api/product/add",
             {
-                
                 method: "POST",
                 headers: {
                     Accept: 'application/json',
@@ -90,20 +121,17 @@ export default function ProductDetail() {
             }
         );
         let json = await response.json();
-        console.log("json: " , json);
+        console.log("json: ", json);
         if (json.result) {
-            window.location = "/home";
+            window.location = "/product";
         }
     }
-
-    const doUpdateProduct = () => {
-
-    }
-
 
 
     return (
         <>
+            {console.log("pasreams: ", params)}
+
             product detail ID: {params.productId}
             {console.log(params)}
             {console.log('Current URL:', location.pathname)}
@@ -137,10 +165,10 @@ export default function ProductDetail() {
                                     <option value={0} label="กรุณาเลือกประเภทเกม"></option>
                                     <option label="กรุณาเลือกประเภทเกม"></option>
                                     {
-                                        productTypes.map(item => (
+                                        GameType.map(item => (
                                             <option
-                                                key={item.product_type_id}
-                                                value={item.product_type_id}>{item.product_type_name}
+                                                key={item.GameType}
+                                                value={item.GameType}>{item.GameTypeName}
                                             </option>
                                         ))
                                     }
@@ -149,21 +177,6 @@ export default function ProductDetail() {
                                 <Form.Control.Feedback type="invalid">กรุณาเลือก ประเภทเกม</Form.Control.Feedback>
                             </Form.Group>
                         </Row>
-
-{/* 
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="validateProductName">
-                                <Form.Label>ราคาสินค้า</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="number"
-                                    value={price}
-                                    placeholder="ราคาสินค้า"
-                                    onChange={(e) => setPrice(e.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">กรุณากรอก ราคาสินค้า</Form.Control.Feedback>
-                            </Form.Group>
-                        </Row> */}
 
                         <Row className="mb-3">
                             <Form.Group as={Col} controlId="validateProductName">
@@ -182,7 +195,7 @@ export default function ProductDetail() {
                             </Form.Group>
                         </Row>
 
-                    
+
 
                         <Row className="mb-3">
                             <button variant="primary" as="input" type="submit" value="SAVE">SAVE</button>

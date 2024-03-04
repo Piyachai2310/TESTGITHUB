@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+// import reportWebVitals from './reportWebVitals';
 import ProductDetail from './ProductDetail';
+import Gamedetail from './gamedetail';
+
 import {
   BrowserRouter,
   Routes,
@@ -17,8 +19,9 @@ import Login from './Login';
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-        <Route path="/" element = {<App />} />
-        <Route path="/Login" element = {<Login />} />
+        <Route path="/" element = {<Login />} />
+        <Route path="/product" element = {<App />} />
+        <Route path="/product/Detail/:gameDetail" element={<Gamedetail />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
     </Routes>
   </BrowserRouter>,
