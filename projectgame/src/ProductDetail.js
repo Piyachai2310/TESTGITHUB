@@ -42,18 +42,18 @@ export default function ProductDetail() {
         }
         fetchData();
     }, []);
-    
+
     useEffect(() => {
         async function fetchData(productId) {
             let json = await API_GET("gamedetail/" + productId);
             var data = json.data[0];
-            console.log("test dataGet: " , data);
+            console.log("test dataGet: ", data);
             setgameID(data.GameID)
             setProductName(data.Game_Name)
             setProductTypeId(data.GameType)
             setDetail(data.DetailGame)
         }
-        
+
         if (params.productId != "add") {
             // console.log("2222222222222222222");
             fetchData([params.productId]);
@@ -64,7 +64,7 @@ export default function ProductDetail() {
     const doUpdateProduct = async () => {
         const json = await API_POST("product/update", {
             GameID: gameID,
-            productName: productName, 
+            productName: productName,
             product_type_id: productTypeId,
             detail: detail
         });
@@ -129,83 +129,86 @@ export default function ProductDetail() {
 
 
     return (
-        <>
-            {console.log("pasreams: ", params)}
+        <div style={{ backgroundColor: "rgba(40, 44, 52, 0.8)",  height:"800px", color:"#ffffff"}}>
 
-            product detail ID: {params.productId}
-            {console.log(params)}
-            {console.log('Current URL:', location.pathname)}
-            <>
+            <div >
+                {console.log("pasreams: ", params)}
 
-                <div className='container m-auto'>
-                    <Form noValidate validated={validated} onSubmit={onSave}>
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="validateProductName">
-                                <Form.Label>ชื่อเกม</Form.Label>
-                                <Form.Control
-                                    required
-                                    type="text"
-                                    value={productName}
-                                    placeholder="ชื่อเกม"
-                                    onChange={(e) => setProductName(e.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">กรุณากรอก ชื่อเกม</Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
+                product detail ID: {params.productId}
+                {console.log(params)}
+                {console.log('Current URL:', location.pathname)}
+                <>
 
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="validateProductType">
-                                <Form.Label>ประเภทเกม</Form.Label>
-                                <Form.Select
-                                    value={productTypeId}
-                                    onChange={(e) => setProductTypeId(e.target.value)}
-                                    required
-                                >
+                    <div className='container m-auto'>
+                        <Form noValidate validated={validated} onSubmit={onSave}>
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="validateProductName">
+                                    <Form.Label>ชื่อเกม</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="text"
+                                        value={productName}
+                                        placeholder="ชื่อเกม"
+                                        onChange={(e) => setProductName(e.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">กรุณากรอก ชื่อเกม</Form.Control.Feedback>
+                                </Form.Group>
+                            </Row>
 
-                                    <option value={0} label="กรุณาเลือกประเภทเกม"></option>
-                                    <option label="กรุณาเลือกประเภทเกม"></option>
-                                    {
-                                        GameType.map(item => (
-                                            <option
-                                                key={item.GameType}
-                                                value={item.GameType}>{item.GameTypeName}
-                                            </option>
-                                        ))
-                                    }
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="validateProductType">
+                                    <Form.Label>ประเภทเกม</Form.Label>
+                                    <Form.Select
+                                        value={productTypeId}
+                                        onChange={(e) => setProductTypeId(e.target.value)}
+                                        required
+                                    >
 
-                                </Form.Select>
-                                <Form.Control.Feedback type="invalid">กรุณาเลือก ประเภทเกม</Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
+                                        <option value={0} label="กรุณาเลือกประเภทเกม"></option>
+                                        <option label="กรุณาเลือกประเภทเกม"></option>
+                                        {
+                                            GameType.map(item => (
+                                                <option
+                                                    key={item.GameType}
+                                                    value={item.GameType}>{item.GameTypeName}
+                                                </option>
+                                            ))
+                                        }
 
-                        <Row className="mb-3">
-                            <Form.Group as={Col} controlId="validateProductName">
-                                <Form.Label>รายละเอียดเกม</Form.Label>
-                                <Form.Control
-                                    as="textarea"
-                                    required
-                                    type="text"
-                                    value={detail}
-                                    min={0}
-                                    placeholder="รายละเอียดเกม"
-                                    style={{ height: '200px' }}
-                                    onChange={(e) => setDetail(e.target.value)}
-                                />
-                                <Form.Control.Feedback type="invalid">กรุณากรอก รายละเอียดเกม</Form.Control.Feedback>
-                            </Form.Group>
-                        </Row>
+                                    </Form.Select>
+                                    <Form.Control.Feedback type="invalid">กรุณาเลือก ประเภทเกม</Form.Control.Feedback>
+                                </Form.Group>
+                            </Row>
 
-
-
-                        <Row className="mb-3">
-                            <button variant="primary" as="input" type="submit" value="SAVE">SAVE</button>
-                        </Row>
-                    </Form>
-                </div>
+                            <Row className="mb-3">
+                                <Form.Group as={Col} controlId="validateProductName">
+                                    <Form.Label>รายละเอียดเกม</Form.Label>
+                                    <Form.Control
+                                        as="textarea"
+                                        required
+                                        type="text"
+                                        value={detail}
+                                        min={0}
+                                        placeholder="รายละเอียดเกม"
+                                        style={{ height: '200px' }}
+                                        onChange={(e) => setDetail(e.target.value)}
+                                    />
+                                    <Form.Control.Feedback type="invalid">กรุณากรอก รายละเอียดเกม</Form.Control.Feedback>
+                                </Form.Group>
+                            </Row>
 
 
-            </>
-        </>
+
+                            <Row className="mb-3">
+                                <button variant="primary" as="input" type="submit" value="SAVE">SAVE</button>
+                            </Row>
+                        </Form>
+                    </div>
+
+
+                </>
+            </div>
+        </div>
     );
 
 }

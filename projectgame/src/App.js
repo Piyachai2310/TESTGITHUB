@@ -91,13 +91,14 @@ function App() {
 
   return (
     <div className="App">
-      <div className="Header">
-        <AppHeader />
-      </div>
+        <div className="Header" style={{ position: "fixed", top: 0, width: "100%" , zIndex:"1023"}}>
+          <AppHeader />
+        </div>
 
-      <div className='Image'>
-        {/* Your Image Component */}
-      </div>
+        {/* <AppHeader /> */}
+
+        {/* <div className='Image'>
+        </div> */}
 
       <div className="RecommendGame_slid">
         <RecommendGame />

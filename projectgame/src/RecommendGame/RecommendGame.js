@@ -68,9 +68,9 @@ const RecommendGame = () => {
             </div>
             <div className='Choice'>
               <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="Apex Legends Game" /></div>
-              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="Overwatch2.jfif" alt="Overwatch 2 Game" /></div>
-              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="Apex Legends Game" /></div>
-              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="Overwatch2.jfif" alt="Overwatch 2 Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('./valorent/valorent1.jfif')}><img src="./valorent/valorent1.jfif" alt="Overwatch 2 Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="./valorent/valorent2.jfif" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="./valorent/valorent3.jfif" alt="Overwatch 2 Game" /></div>
               {/* ... ส่วนที่เหลือของโค้ด ... */}
             </div>
 
@@ -78,49 +78,55 @@ const RecommendGame = () => {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='GameSlide' >
-          <div className='GameImage'>
-            <img src="./header.jpg" alt="Tom Clancy's Rainbow Six® Siege" />
-          </div>
-          <div className='GameContent'>
-            <h2 className='GameTitle'>เกม Tom Clancy's Rainbow Six® Siege</h2>
-          </div>
+      <div className='container-imagechagne'>
+          <nav>
+            <div className='display'>
+              {image === 'Apex.jfif' ? <Image1 /> : <Image2 />}
+            </div>
+            <div className='Choice'>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="Apex Legends Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('./valorent/valorent1.jfif')}><img src="./valorent/valorent1.jfif" alt="Overwatch 2 Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="./valorent/valorent2.jfif" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="./valorent/valorent3.jfif" alt="Overwatch 2 Game" /></div>
+              {/* ... ส่วนที่เหลือของโค้ด ... */}
+            </div>
+
+          </nav>
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className='GameSlide' >
-          <div className='GameImage'>
-            <img src="./Overwatch2.jfif" alt="Overwatch 2" />
-          </div>
-          <div className='GameContent'>
-            <h2 className='GameTitle'>เกม Apex Legends</h2>
-          </div>
+      <div className='container-imagechagne'>
+          <nav>
+            <div className='display'>
+              {image === 'Apex.jfif' ? <Image1 /> : <Image2 />}
+            </div>
+            <div className='Choice'>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="Apex Legends Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('./valorent/valorent1.jfif')}><img src="./valorent/valorent1.jfif" alt="Overwatch 2 Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="./valorent/valorent2.jfif" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="./valorent/valorent3.jfif" alt="Overwatch 2 Game" /></div>
+              {/* ... ส่วนที่เหลือของโค้ด ... */}
+            </div>
+
+          </nav>
         </div>
       </SwiperSlide>
+      
       <SwiperSlide>
-        <img src="./Apex.jfif" alt="Apex Legends" style={{ width: "100%", marginRight: "10px" }} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='GameSlide' >
-          <div className='GameImage'>
-            <img src="./Overwatch2.jfif" alt="Overwatch 2" />
-          </div>
-          <div className='GameContent'>
-            <h2 className='GameTitle'>เกม Apex Legends</h2>
-          </div>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <img src="./Apex.jfif" alt="Apex Legends" style={{ width: "100%", marginRight: "10px" }} />
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='GameSlide' >
-          <div className='GameImage'>
-            <img src="./Overwatch2.jfif" alt="Overwatch 2" />
-          </div>
-          <div className='GameContent'>
-            <h2 className='GameTitle'>เกม Apex Legends</h2>
-          </div>
+      <div className='container-imagechagne'>
+          <nav>
+            <div className='display'>
+              {image === 'Apex.jfif' ? <Image1 /> : <Image2 />}
+            </div>
+            <div className='Choice'>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="Apex Legends Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('./valorent/valorent1.jfif')}><img src="./valorent/valorent1.jfif" alt="Overwatch 2 Game" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Apex.jfif')}><img src="Apex.jfif" alt="./valorent/valorent2.jfif" /></div>
+              <div className='choice-click' onClick={() => handleImageChange('Overwatch2.jfif')}><img src="./valorent/valorent3.jfif" alt="Overwatch 2 Game" /></div>
+              {/* ... ส่วนที่เหลือของโค้ด ... */}
+            </div>
+
+          </nav>
         </div>
       </SwiperSlide>
     </Swiper>

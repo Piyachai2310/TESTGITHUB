@@ -24,7 +24,7 @@
 .GameSlide .GameContent {
     position: absolute;
     height: 100%;
-    width: 40%;
+    width: 80%;
     right: 0;
     background-color: black;
     color: aliceblue;
@@ -32,22 +32,32 @@
 
 
 .swiper {
-    width: 1000px;
+    width: 1400px;
     height: 400px;
-    margin-top: 10rem;
-    
+    margin-top: 6rem;
+    /* background-image: url('./../League_of_league.jpg'); */
+    background-color: rgba(102, 86, 86, 0.226);
+    background-image: url('https://images.unsplash.com/photo-1520916784675-1b97f1fc1c05?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGJhY2tncm91bmQlMjBjb2xvcnxlbnwwfHwwfHx8MA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
 
 /*======================================================*/
 .container-imagechagne {
-    /* background-color: aqua; */
+    backdrop-filter: blur(10px);
+    background-image: url('https://images.unsplash.com/photo-1520916784675-1b97f1fc1c05?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGJhY2tncm91bmQlMjBjb2xvcnxlbnwwfHwwfHx8MA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 400px;
-    width: 900px;
-    margin-left: 50px;
-
+    width: 1200px;
+    margin-left: 100px;
 }
 
 .container-imagechagne nav {
+    /* backdrop-filter: blur(3px); */
     display: flex;
     flex-direction: row;
     /* gap: 2rem; */
